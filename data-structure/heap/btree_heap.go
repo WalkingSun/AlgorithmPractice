@@ -14,4 +14,34 @@ package heap
 最大堆（相应的可以定义最小堆）：堆中某个节点的值总是不大于其父节点的值
 
 二叉树实现堆
- */
+*/
+
+type Heap struct {
+	Data []int
+}
+
+func (h *Heap) Size() int {
+	return len(h.Data)
+}
+
+func (h *Heap) MaxHeap() int {
+	if len(h.Data) == 0 {
+		return 0
+	}
+	return h.Data[0]
+}
+
+func (h *Heap) Parent(num int) int {
+	n := num / 2
+	return h.Data[n]
+}
+
+func (h *Heap) Left(num int) int {
+	n := num * 2
+	return h.Data[n]
+}
+
+func (h *Heap) Right(num int) int {
+	n := num*2 + 1
+	return h.Data[n]
+}
