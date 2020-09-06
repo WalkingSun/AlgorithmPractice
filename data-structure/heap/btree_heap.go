@@ -39,18 +39,40 @@ func (h *Heap) Parent(index int) int {
 	return h.Data[n]
 }
 
-func (h *Heap) Left(index int) int {
-	if len(h.Data) == 0 {
+func (h *Heap) LeftChild(index int) int {
+	if h.isEmpty() {
 		return 0
 	}
 	n := index * 2
 	return h.Data[n]
 }
 
-func (h *Heap) Right(index int) int {
+func (h *Heap) RightChild(index int) int {
 	if len(h.Data) == 0 {
 		return 0
 	}
 	n := index*2 + 1
 	return h.Data[n]
+}
+
+func (h *Heap) isEmpty() bool {
+	return len(h.Data) == 0
+}
+
+// 往堆中添加元素
+func (h *Heap) Add(d int) {
+	h.Data = append(h.Data, d)
+	h.siftUp(len(h.Data))
+}
+
+// 检查父节点 是否替换位置
+func (h *Heap) siftUp(k int) {
+	for {
+		if k > 0 && h.Parent(k) < h.Data[k] {
+			h.Data[k/2], h.Data[k] = h.Data[k], h.Data[k/2]
+			k = k / 2
+		} else {
+			break
+		}
+	}
 }
