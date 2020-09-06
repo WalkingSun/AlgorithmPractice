@@ -31,17 +31,26 @@ func (h *Heap) MaxHeap() int {
 	return h.Data[0]
 }
 
-func (h *Heap) Parent(num int) int {
-	n := num / 2
+func (h *Heap) Parent(index int) int {
+	if len(h.Data) == 0 {
+		return 0
+	}
+	n := index / 2
 	return h.Data[n]
 }
 
-func (h *Heap) Left(num int) int {
-	n := num * 2
+func (h *Heap) Left(index int) int {
+	if len(h.Data) == 0 {
+		return 0
+	}
+	n := index * 2
 	return h.Data[n]
 }
 
-func (h *Heap) Right(num int) int {
-	n := num*2 + 1
+func (h *Heap) Right(index int) int {
+	if len(h.Data) == 0 {
+		return 0
+	}
+	n := index*2 + 1
 	return h.Data[n]
 }
