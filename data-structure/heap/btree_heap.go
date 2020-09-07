@@ -24,6 +24,7 @@ func (h *Heap) Size() int {
 	return len(h.Data)
 }
 
+// 堆中最大元素
 func (h *Heap) MaxHeap() int {
 	if len(h.Data) == 0 {
 		return 0
@@ -65,7 +66,7 @@ func (h *Heap) Add(d int) {
 	h.siftUp(len(h.Data))
 }
 
-// 检查父节点 是否替换位置
+// 上浮 检查父节点 是否替换位置
 func (h *Heap) siftUp(k int) {
 	for {
 		if k > 0 && h.Parent(k) < h.Data[k] {
@@ -75,4 +76,14 @@ func (h *Heap) siftUp(k int) {
 			break
 		}
 	}
+}
+
+// 取出堆中最大元素
+func (h *Heap) extractMax() {
+	// 最末端元素移至最大节点；
+
+	// 删除末端元素
+
+	// 下沉 节点值与左右节点最大值比较，不符合堆替换；下称 一直到满足堆条件；
+
 }
