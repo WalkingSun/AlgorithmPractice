@@ -78,12 +78,48 @@ func (h *Heap) siftUp(k int) {
 	}
 }
 
-// 取出堆中最大元素
-func (h *Heap) extractMax() {
-	// 最末端元素移至最大节点；
-
-	// 删除末端元素
+// 取出堆中最大元素 （场景：实现堆的降序输出）
+func (h *Heap) ExtractMax() int {
+	// 最末端元素移至最大节点,删除末端元素
+	if h.Size() == 0 {
+		panic("heap is null")
+	}
+	max := h.MaxHeap()
+	h.Data[0] = h.Data[h.Size()]
+	h.Data = h.Data[:h.Size()-1]
 
 	// 下沉 节点值与左右节点最大值比较，不符合堆替换；下称 一直到满足堆条件；
+	h.siftDown(0)
+	return max
+}
+
+func (h *Heap) siftDown(k int) {
+	for {
+		// 节点有child
+		if h.LeftChild(k) < h.Size() {
+
+			// 找出child中最大节点j
+			j := h.LeftChild(k)
+			if j+1 < h.Size() && h.Data[j+1] > h.Data[j] {
+				j = h.RightChild(k)
+			}
+
+			// 比较父节点与子节点最大值比较，不符合堆，发生交换；反之，中断下沉
+			if h.Data[k] > h.Data[j] {
+				break
+			}
+			h.Data[k], h.Data[j] = h.Data[j], h.Data[k]
+			k = j
+		}
+	}
+}
+
+// 输出最大值，并且添加一个元素
+func (h *Heap) Replace() {
+
+}
+
+// 讲一个给定的二叉树生成heap
+func (h *Heap) Heapify(data []int) {
 
 }
