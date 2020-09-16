@@ -114,9 +114,12 @@ func (h *Heap) siftDown(k int) {
 	}
 }
 
-// 输出最大值，并且添加一个元素
-func (h *Heap) Replace() {
-
+// 取出最大元素，并且添加一个元素
+func (h *Heap) Replace(d int) int {
+	max := h.Data[0]
+	h.Data[0] = d
+	h.siftDown(0)
+	return max
 }
 
 // 讲一个给定的二叉树生成heap

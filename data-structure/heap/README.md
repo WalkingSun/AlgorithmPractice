@@ -24,4 +24,10 @@
 
 ### 从heap中取出元素
 
+### relpace
+取出最大元素后，放入一个新元素
+
+实现1：先extralMax，再add，两次O（log n）操作；
+
+实现2：直接替换堆顶元素，执行siftdown，一次O（log n)操作；
 
