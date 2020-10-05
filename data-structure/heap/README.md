@@ -18,7 +18,7 @@
 
 ### 堆中添加元素
 
-新增元素52，与父亲节点比较，不符合堆条件，替换位置；父亲节点与其父节点不符合继续替换，一直到符合条件位置。
+新增元素52，与父亲节点比较，不符合堆条件，替换位置；父亲节点与其父节点不符合继续替换，一直到符合条件位置。(sift up)
 
 ![image-20200906211231547](https://raw.githubusercontent.com/WalkingSun/WindBlog/gh-pages/images/ws2/image-20200906211231547.png)
 
@@ -29,5 +29,18 @@
 
 实现1：先extralMax，再add，两次O（log n）操作；
 
-实现2：直接替换堆顶元素，执行siftdown，一次O（log n)操作；
+实现2：直接替换堆顶元素，执行sift down，一次O(logN)操作；
+
+### Heapify
+给定一个数组，转化成堆。
+
+实现1：将n个元素逐个插入到一个空堆中 O(nlogN)
+
+实现2：Heapify 将任意数组整理成堆的形状 O(n)
+
+- 当前数组看作为二叉树；
+- 向前遍历，每个节点执行sift down（下沉）；
+- 跳过没有子节点的节点；
+
+![image-20201005220055079](https://raw.githubusercontent.com/WalkingSun/WindBlog/gh-pages/images/ws2/image-20201005220055079.png)
 
