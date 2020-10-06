@@ -1,5 +1,7 @@
 package heap
 
+import "fmt"
+
 /**
 堆(Heap)是计算机科学中一类特殊的数据结构的统称。堆通常是一个可以被看做一棵完全二叉树的数组对象。
 1、堆中某个节点的值总是不大于或不小于其父节点的值；
@@ -15,6 +17,10 @@ package heap
 
 二叉树实现堆
 */
+
+func NewHeap() *Heap {
+	return &Heap{}
+}
 
 type Heap struct {
 	Data []int
@@ -44,16 +50,16 @@ func (h *Heap) LeftChild(index int) int {
 	if h.isEmpty() {
 		return 0
 	}
-	n := index * 2
-	return h.Data[n]
+	n := (index+1)*2 - 1
+	return n
 }
 
 func (h *Heap) RightChild(index int) int {
 	if len(h.Data) == 0 {
 		return 0
 	}
-	n := index*2 + 1
-	return h.Data[n]
+	n := (index + 1) * 2
+	return n
 }
 
 func (h *Heap) isEmpty() bool {
@@ -110,6 +116,8 @@ func (h *Heap) siftDown(k int) {
 			}
 			h.Data[k], h.Data[j] = h.Data[j], h.Data[k]
 			k = j
+		} else {
+			break
 		}
 	}
 }
@@ -122,7 +130,16 @@ func (h *Heap) Replace(d int) int {
 	return max
 }
 
-// 讲一个给定的二叉树生成heap
-func (h *Heap) Heapify(data []int) {
-
+// 将一个给定的二叉树生成heap
+func (h *Heap) Heapify(data []int) []int {
+	h.Data = data
+	l := h.Size()
+	for i := l; i >= 0; i-- {
+		if h.LeftChild(i) > l-1 {
+			continue
+		}
+		fmt.Println(i, h.LeftChild(i))
+		h.siftDown(i)
+	}
+	return h.Data
 }
