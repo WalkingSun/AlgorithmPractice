@@ -1,7 +1,5 @@
 package heap
 
-import "fmt"
-
 /**
 堆(Heap)是计算机科学中一类特殊的数据结构的统称。堆通常是一个可以被看做一棵完全二叉树的数组对象。
 1、堆中某个节点的值总是不大于或不小于其父节点的值；
@@ -69,7 +67,7 @@ func (h *Heap) isEmpty() bool {
 // 往堆中添加元素
 func (h *Heap) Add(d int) {
 	h.Data = append(h.Data, d)
-	h.siftUp(len(h.Data))
+	h.siftUp(len(h.Data) - 1)
 }
 
 // 上浮 检查父节点 是否替换位置
@@ -138,7 +136,6 @@ func (h *Heap) Heapify(data []int) []int {
 		if h.LeftChild(i) > l-1 {
 			continue
 		}
-		fmt.Println(i, h.LeftChild(i))
 		h.siftDown(i)
 	}
 	return h.Data
