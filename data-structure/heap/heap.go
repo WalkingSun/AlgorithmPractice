@@ -88,10 +88,10 @@ func (h *Heap) ExtractMax() int {
 	if h.Size() == 0 {
 		panic("heap is null")
 	}
-	max := h.MaxHeap()
-	h.Data[0] = h.Data[h.Size()]
-	h.Data = h.Data[:h.Size()-1]
 
+	max := h.MaxHeap()
+	h.Data[0] = h.Data[h.Size()-1]
+	h.Data = h.Data[:h.Size()-1]
 	// 下沉 节点值与左右节点最大值比较，不符合堆替换；下称 一直到满足堆条件；
 	h.siftDown(0)
 	return max

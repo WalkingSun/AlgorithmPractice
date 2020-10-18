@@ -1,20 +1,35 @@
 package queue
 
-type PriorityQueue struct {
+import (
+	"../heap"
+)
+
+var (
+	newHeap = heap.NewHeap()
+)
+
+func NewPriorityQueue() Queue {
+	return &priorityQueue{}
 }
 
-func (p *PriorityQueue) GetSize() {
-
+type priorityQueue struct {
 }
 
-func (p *PriorityQueue) Push(d int) {
-
+func (p *priorityQueue) GetSize() int {
+	return newHeap.Size()
 }
 
-func (p *PriorityQueue) Pop() {
-
+func (p *priorityQueue) Push(d int) {
+	newHeap.Add(d)
 }
 
-func (p *PriorityQueue) isEmpty() {
+func (p *priorityQueue) Pop() int {
+	return newHeap.ExtractMax()
+}
 
+func (p *priorityQueue) IsEmpty() bool {
+	if p.GetSize() != 0 {
+		return false
+	}
+	return true
 }

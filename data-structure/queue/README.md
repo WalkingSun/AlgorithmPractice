@@ -8,3 +8,8 @@
 普通线性结构			O（1）		O（n）
 顺序线性结构			O（n）		O（1）
 堆					O（logn)	O（logn)
+
+单元测试：
+```shell script
+go test -v  data-structure/queue/queue.go  data-structure/queue/priority_queue.go data-structure/queue/priority_queue_test.go 
+```
